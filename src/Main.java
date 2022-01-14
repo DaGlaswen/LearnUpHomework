@@ -9,7 +9,7 @@ public class Main {
         JavaBank bank = new JavaBank();
         Saver saver = new Saver("Mark", 33, 100_000);
         Splitter splitter = new Splitter("Phil", 30, 100_000);
-        int difference = compare(saver, splitter, bank, 14);
+        int difference = compare(saver, splitter, bank, 7);
         System.out.println(difference);
 
         // Головинов Данил

@@ -9,10 +9,10 @@ public class Splitter extends Client {
     public int calcSavings(JavaBank bank, int years) {
         int savings = 0;
         while (years > 0) {
-            int[] arrayOfDeposits = (years >= 3) ? new int[3] : new int[years];
+            int[] arrayOfDeposits = (years >= 3) ? new int[3] : new int[years % 3];
             savings += (int)(0.3F * salary);
             arrayOfDeposits[0] = savings;
-            int interest = bank.calculateCompoundInterest(years, arrayOfDeposits);
+            int interest = bank.calculateCompoundInterest(arrayOfDeposits.length, arrayOfDeposits);
             savings += interest;
             years -= 3;
         }
