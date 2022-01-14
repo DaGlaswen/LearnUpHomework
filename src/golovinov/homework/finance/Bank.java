@@ -1,5 +1,7 @@
 package golovinov.homework.finance;
 
+import java.util.Arrays;
+
 public class Bank {
 
     float calculateRate(int amount, int yearsInBank) {
@@ -17,15 +19,30 @@ public class Bank {
         return rate;
     }
 
-    public int[] calculateInvestment(int[] investments) {
-        int[] resultingPercents = new int[investments.length];
-        int totalAmount = 0;
+    public int[] calculateInterest(int years, int[] investments) {
+        int[] resultingPercents = new int[years]; // The array of the interest paid yearly
+        int totalAmount = 0; // Currently in bank
+        investments = Arrays.copyOf(investments, years);
         for (int i = 0; i < investments.length; i++) {
-            float rate = calculateRate(investments[i], investments.length - i);
+            totalAmount += investments[i];
+            float rate = calculateRate(totalAmount, investments.length - i);
             float ratePercent = rate / 100;
-            resultingPercents[i] = (int) ((totalAmount + investments[i]) * ratePercent);
-            totalAmount += investments[i] + resultingPercents[i];
+            resultingPercents[i] = (int) (totalAmount * ratePercent);
         }
         return resultingPercents;
+    }
+
+    public int calculateCompoundInterest(int years, int[] investments) {
+        int interest = 0; // Total interest over the years
+        int totalAmount = 0; // Currently in bank
+        investments = Arrays.copyOf(investments, years);
+        for (int i = 0; i < investments.length; i++) {
+            totalAmount += investments[i];
+            float rate = calculateRate(totalAmount, investments.length - i);
+            float ratePercent = rate / 100;
+            interest += (int) (totalAmount * ratePercent);
+            totalAmount += (int) (totalAmount * ratePercent);
+        }
+        return interest;
     }
 }

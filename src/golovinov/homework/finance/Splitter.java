@@ -9,18 +9,16 @@ public class Splitter extends Client {
 
     @Override
     public int calcSavings(Bank bank, int years) {
-        int result = 0;
+        int savings = 0;
         while (years > 0) {
             int[] arrayOfDeposits = (years >= 3) ? new int[3] : new int[years];
-            arrayOfDeposits[0] = (int) (0.3F * salary + result);
-            result += 0.3F * salary;
-            int[] resultingPercents = bank.calculateInvestment(arrayOfDeposits);
-            for (int percents : resultingPercents) {
-                result += percents;
-            }
+            savings += 0.3F * salary;
+            arrayOfDeposits[0] = (int) (savings);
+            int interest = bank.calculateCompoundInterest(years, arrayOfDeposits);
+            savings += interest;
             years -= 3;
         }
 
-        return result;
+        return savings;
     }
 }

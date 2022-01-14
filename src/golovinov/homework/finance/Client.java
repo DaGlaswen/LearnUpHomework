@@ -12,16 +12,14 @@ public class Client {
     }
 
     public int calcSavings(Bank bank, int years) {
-        int result = 0;
+        int savings = 0;
         int[] tenPercentAddOns = new int[years];
         for (int i = 0; i < years; i++) {
             tenPercentAddOns[i] = salary / 10;
-            result += salary / 10;
+            savings += salary / 10; // Добавляем сами депозиты к результату
         }
-        int[] resultingPercents = bank.calculateInvestment(tenPercentAddOns);
-        for (int i = 0; i < years; i++) {
-            result += resultingPercents[i];
-        }
-        return result;
+        int interest = bank.calculateCompoundInterest(years, tenPercentAddOns); // Считаем капитализированные проценты
+        savings += interest; //
+        return savings;
     }
 }

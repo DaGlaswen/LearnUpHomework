@@ -9,16 +9,14 @@ public class Saver extends Client {
     @Override
     public int calcSavings(Bank bank, int years) {
         float percentFromSalary = 0.15F;
-        int result = 0;
+        int savings = 0;
         int[] AddOns = new int[years];
         for (int i = 0; i < years; i++) {
             AddOns[i] = (int) (salary * percentFromSalary);
-            result += salary * percentFromSalary;
+            savings += salary * percentFromSalary;
         }
-        int[] resultingPercents = bank.calculateInvestment(AddOns);
-        for (int i = 0; i < years; i++) {
-            result += resultingPercents[i];
-        }
-        return result;
+        int interest = bank.calculateCompoundInterest(years, AddOns); // Считаем капитализированные проценты
+        savings += interest;
+        return savings;
     }
 }
