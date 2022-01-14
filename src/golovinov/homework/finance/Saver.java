@@ -7,13 +7,13 @@ public class Saver extends Client {
     }
 
     @Override
-    public int calcSavings(Bank bank, int years) {
-        float percentFromSalary = 0.15F;
+    public int calcSavings(JavaBank bank, int years) {
         int savings = 0;
         int[] AddOns = new int[years];
         for (int i = 0; i < years; i++) {
-            AddOns[i] = (int) (salary * percentFromSalary);
-            savings += salary * percentFromSalary;
+            int percentFromSalary = (int)(0.15F * salary);
+            AddOns[i] = percentFromSalary;
+            savings += percentFromSalary;
         }
         int interest = bank.calculateCompoundInterest(years, AddOns); // Считаем капитализированные проценты
         savings += interest;
