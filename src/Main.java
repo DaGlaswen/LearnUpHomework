@@ -7,7 +7,7 @@ import golovinov.homework.finance.Splitter;
 public class Main {
     public static void main(String[] args) {
         JavaBank bank = new JavaBank();
-        Saver saver = new Saver("Mark", 33, 100_000);
+        Saver saver = new Saver("Mark", 0, 100_000);
         Splitter splitter = new Splitter("Phil", 30, 100_000);
         int difference = compare(saver, splitter, bank, 7);
         System.out.println(difference);
