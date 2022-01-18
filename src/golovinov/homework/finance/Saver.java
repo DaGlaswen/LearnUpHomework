@@ -7,7 +7,10 @@ public class Saver extends Client {
     }
 
     @Override
-    public int calcSavings(JavaBank bank, int years) {
+    public int calcSavings(JavaBank bank, int years) throws WrongSavingsAccountDataException{
+        if (years <= 0) {
+            throw new WrongSavingsAccountDataException();
+        }
         int savings = 0;
         int[] AddOns = new int[years];
         for (int i = 0; i < years; i++) {

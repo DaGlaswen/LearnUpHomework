@@ -6,7 +6,10 @@ public class Splitter extends Client {
     }
 
     @Override
-    public int calcSavings(JavaBank bank, int years) {
+    public int calcSavings(JavaBank bank, int years) throws WrongSavingsAccountDataException {
+        if (years <= 0) {
+            throw new WrongSavingsAccountDataException();
+        }
         int savings = 0;
         while (years > 0) {
             int[] arrayOfDeposits = (years >= 3) ? new int[3] : new int[years % 3];

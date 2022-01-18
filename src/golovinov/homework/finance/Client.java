@@ -33,5 +33,5 @@ public abstract class Client {
         this.salary = salary;
     }
 
-    public abstract int calcSavings(JavaBank bank, int years);
+    public abstract int calcSavings(JavaBank bank, int years) throws WrongSavingsAccountDataException;
 }
